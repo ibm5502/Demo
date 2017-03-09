@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>下拉加载</title>
+    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+        //数据加载时期的gif加载图,用于提示用户数据正在加载!
+        var loadDiv = '<div class="loading"><img src="http://img5.imgtn.bdimg.com/it/u=2984672488,2449753517&fm=23&gp=0.jpg" ></div>';
+        //监听窗口的鼠标滚轮事件
+        $(window).scroll(function() {
+            //当滚轮滚动到文档最末位，也就是拉到了最底下
+            if( $(window).scrollTop() == $(document).height() - $(window).height() ) {
+                //避免多次滚轮触发事件造成图片的多次追加，加上此判断
+                if($('#container .loading').length == 0) {
+                    //将图片插入到内部的内容最末位
+                    $('#container').append(loadDiv);
+                }
+                //发送ajax请求获取数据
+                $.ajax({
+                    type: "POST",
+                    url: "load.php",
+                    success: function(data){
+                        //加载成功,移除用于提示用户的动态gif图片
+                        $('#container .loading').remove();
+                        //追加后端返回的数据
+                        $('#container').append(data);
+                    }
+                });
+            }
+        });
+    </script>
+
+</head>
+<body>
+<div id="container">
+    下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>下拉加载<br/>
+    <!-- 复制上方文字,直到有滚动条出现为止,为了达到测试目的 -->
+</div>
+</body>
+</html>
